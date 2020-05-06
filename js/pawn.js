@@ -5,7 +5,20 @@ function Pawn(x,y,color){
   this.piece="Pawn";
   this.text="P"
   this.moves=[];
+this.findMoves=function(){
+  if(this.color=="Black"){
+    if(this.y==2)
+    if(grid[this.x-1][this.y].piece==null){
+    this.moves.push(grid[this.x-1][this.y]);
+    if(grid[this.x-1][this.y+1].piece==null)
+    this.moves.push(grid[this.x-1][this.y+1]);}
+  }
+  else{
+    if(this.y==7)
+    if(grid[this.x-1][this.y-2].piece==null){
+    this.moves.push(grid[this.x-1][this.y-2]);
+    if(grid[this.x-1][this.y-3].piece==null)
+    this.moves.push(grid[this.x-1][this.y-3]);}
+  }
 }
-function findMoves(){
-
 }
