@@ -15,12 +15,42 @@ function drawMoves(piece){
 }
 function clickedd(event) {
   draw();
-
-  // console.log(grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))]);
-  if(grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))].piece!=null){
-    grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))].piece.findMoves();
-    drawMoves(grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))].piece);
-
-
+  console.log(flag);
+  if(flag){
+    // console.log(grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))]);
+    if(grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))].piece!=null) {
+      grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))].piece.findMoves();
+      drawMoves(grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))].piece);
+      activePiece=grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))];
+      if(activePiece.piece.moves.length<1)
+        flag=false;
+    }
+    else {
+      flag=false;
+    }
   }
+  else {
+    if(activePiece.piece.moves.includes(grid[Math.floor(event.offsetX/(can.width/grid.length))][Math.floor(event.offsetY/(can.height/grid.length))])) {
+      if(grid[Math.floor(event.offsetX/(can.width/grid.length))][Math.floor(event.offsetY/(can.height/grid.length))].piece!=null){
+        if(activePiece.piece.color=="Black"){
+          p2P.push(grid[Math.floor(event.offsetX/(can.width/grid.length))][Math.floor(event.offsetY/(can.height/grid.length))].piece.piece);
+        }
+        else{
+          p1P.push(grid[Math.floor(event.offsetX/(can.width/grid.length))][Math.floor(event.offsetY/(can.height/grid.length))].piece.piece);
+        }
+
+        if(grid[Math.floor(event.offsetX/(can.width/grid.length))][Math.floor(event.offsetY/(can.height/grid.length))].piece.piece=="King")
+        console.log("Game Over");
+      }
+      grid[Math.floor(event.offsetX/(can.width/grid.length))][Math.floor(event.offsetY/(can.height/grid.length))].piece=activePiece.piece;
+      activePiece.piece=null;
+      grid[Math.floor(event.offsetX/(can.width/grid.length))][Math.floor(event.offsetY/(can.height/grid.length))].piece.x=Math.floor(event.offsetX/(can.width/grid.length))+1;
+      grid[Math.floor(event.offsetX/(can.width/grid.length))][Math.floor(event.offsetY/(can.height/grid.length))].piece.y=Math.floor(event.offsetY/(can.height/grid.length))+1;
+      draw();
+    }
+    else {
+      console.log("invalid")
+    }
+  }
+  flag==true?flag=false:flag=true;
 }

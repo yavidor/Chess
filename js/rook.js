@@ -6,6 +6,7 @@ function Rook(x,y,color) {
   this.text="R";
   this.moves = [];
   this.findMoves=function(){
+    this.moves=[];
     for(let i=this.x;i<8;i++)
       if(grid[i][this.y-1].piece==null)
       this.moves.push(grid[i][this.y-1]);

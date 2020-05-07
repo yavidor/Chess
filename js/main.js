@@ -1,4 +1,4 @@
-let grid = new Array(8), flag=true, p1P = [], p2P = [];
+let grid = new Array(8), flag=true, p1P = [], p2P = [], activePiece=null;
 grid=create2D(grid);
 const can = document.getElementById("canvas"),ctx = can.getContext('2d');
 function setup(){
@@ -25,13 +25,15 @@ function setup(){
   grid[4][7].piece = new King(5,8,"White");
   grid[5][7].piece = new Bishop(6,8,"White");
   grid[6][7].piece = new Knight(7,8,"White");
-  grid[5][5].piece = new Bishop(6,6,"White");
+  grid[7][7].piece = new Rook(8,8,"White");
   for (let i=0;i<grid.length;i++)
   grid[i][6].piece = new Pawn(i+1,7,"White");
 }
 setup();
 function draw(){
-  for(let x=0;x<grid.length;x++)
+  console.log("White caught: " + p1P);
+  console.log("Black caught: " + p2P);
+  for(let x=0;x<grid.length;x++){
   for (let y=0;y<grid.length;y++){
     ctx.fillStyle=grid[x][y].color;
     ctx.fillRect(x * (can.width / grid.length), y * (can.height / grid.length), (can.width / grid.length) , (can.height / grid.length));
@@ -46,5 +48,6 @@ function draw(){
       ctx.fillText(grid[x][y].piece.text,x *(can.width / grid.length), grid[x][y].y*(can.height / grid.length));
     }
   }
+}
 }
 draw();

@@ -5,20 +5,59 @@ function Pawn(x,y,color){
   this.piece="Pawn";
   this.text="P"
   this.moves=[];
-this.findMoves=function(){
-  if(this.color=="Black"){
-    if(this.y==2)
-    if(grid[this.x-1][this.y].piece==null){
-    this.moves.push(grid[this.x-1][this.y]);
-    if(grid[this.x-1][this.y+1].piece==null)
-    this.moves.push(grid[this.x-1][this.y+1]);}
+  this.findMoves=function(){
+    this.moves=[];
+    if(this.y!=8&&this.y!=1){
+      if(this.color=="Black"){
+        if(this.x<8){
+          if(grid[this.x][this.y].piece!=null){
+            if(grid[this.x][this.y].piece.color!=this.color){
+              this.moves.push(grid[this.x][this.y]);
+            }
+          }
+        }
+        if(this.x>1){
+          if(grid[this.x-2][this.y].piece!=null){
+            if(grid[this.x-2][this.y].piece.color!=this.color){
+              this.moves.push(grid[this.x-2][this.y]);
+            }
+          }
+        }
+        if(this.y==2){
+          if(grid[this.x-1][this.y].piece==null){
+            this.moves.push(grid[this.x-1][this.y]);
+            if(grid[this.x-1][this.y+1].piece==null)
+            this.moves.push(grid[this.x-1][this.y+1]);
+          }
+        }
+        if(grid[this.x-1][this.y].piece==null){
+          this.moves.push(grid[this.x-1][this.y]);
+        }
+      }
+      else{
+        if(this.x<8){
+          if(grid[this.x][this.y-2].piece!=null){
+            if(grid[this.x][this.y-2].piece.color!=this.color){
+              this.moves.push(grid[this.x][this.y-2]);
+            }
+          }
+        }
+        if(this.x>1){
+          if(grid[this.x-2][this.y-2].piece!=null){
+            if(grid[this.x-2][this.y-2].piece.color!=this.color){
+              this.moves.push(grid[this.x-2][this.y-2]);
+            }
+          }
+        }
+        if(this.y==7)
+        if(grid[this.x-1][this.y-2].piece==null){
+          this.moves.push(grid[this.x-1][this.y-2]);
+          if(grid[this.x-1][this.y-3].piece==null)
+          this.moves.push(grid[this.x-1][this.y-3]);}
+          if(grid[this.x-1][this.y-2].piece==null){
+            this.moves.push(grid[this.x-1][this.y-2]);
+          }
+        }
+      }
+    }
   }
-  else{
-    if(this.y==7)
-    if(grid[this.x-1][this.y-2].piece==null){
-    this.moves.push(grid[this.x-1][this.y-2]);
-    if(grid[this.x-1][this.y-3].piece==null)
-    this.moves.push(grid[this.x-1][this.y-3]);}
-  }
-}
-}
