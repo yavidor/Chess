@@ -1,6 +1,7 @@
-let grid = new Array(8), flag=true, p1P = [], p2P = [], activePiece=null;
+let grid = new Array(8), flag=true, p1P = [], p2P = [], activePiece=null,kingB = new King(5,1,"Black"),kingW = new King(5,8,"White");
 grid=create2D(grid);
 const can = document.getElementById("canvas"),ctx = can.getContext('2d');
+
 function setup(){
   ctx.fillStyle = "rgb(255,255,255)";
   ctx.fillRect(0,0,can.height,can.width);
@@ -12,7 +13,7 @@ function setup(){
   grid[1][0].piece = new Knight(2,1,"Black");
   grid[2][0].piece = new Bishop(3,1,"Black");
   grid[3][0].piece = new Queen(4,1,"Black");
-  grid[4][0].piece = new King(5,1,"Black");
+  grid[4][0].piece = kingB;
   grid[5][0].piece = new Bishop(6,1,"Black");
   grid[6][0].piece = new Knight(7,1,"Black");
   grid[7][0].piece = new Rook(8,1,"Black");
@@ -22,7 +23,7 @@ function setup(){
   grid[1][7].piece = new Knight(2,8,"White");
   grid[2][7].piece = new Bishop(3,8,"White");
   grid[3][7].piece = new Queen(4,8,"White");
-  grid[4][7].piece = new King(5,8,"White");
+  grid[4][7].piece = kingW;
   grid[5][7].piece = new Bishop(6,8,"White");
   grid[6][7].piece = new Knight(7,8,"White");
   grid[7][7].piece = new Rook(8,8,"White");
@@ -31,6 +32,7 @@ function setup(){
 }
 setup();
 function draw(){
+  kingDanger();
   console.log("White caught: " + p1P);
   console.log("Black caught: " + p2P);
   for(let x=0;x<grid.length;x++){

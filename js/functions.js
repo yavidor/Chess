@@ -23,7 +23,7 @@ function clickedd(event) {
       drawMoves(grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))].piece);
       activePiece=grid[Math.floor(event.offsetX / (can.width / grid.length))][Math.floor(event.offsetY / (can.height / grid.length))];
       if(activePiece.piece.moves.length<1)
-        flag=false;
+      flag=false;
     }
     else {
       flag=false;
@@ -53,4 +53,20 @@ function clickedd(event) {
     }
   }
   flag==true?flag=false:flag=true;
+}
+function kingDanger(){
+  for(let i=0;i<grid.length;i++){
+    for(let j=0;j<grid.length;j++){
+      if(grid[i][j].hasPiece()){
+      grid[i][j].piece.findMoves();
+      for(let k=0;k<grid[i][j].piece.moves.length;k++){
+        if(grid[i][j].piece.moves[k].hasPiece()){
+      if(grid[i][j].piece.moves[k].piece.color != grid[i][j].piece.color &&  grid[i][j].piece.moves[k].piece.piece == "King"){
+console.log(grid[i][j].piece);
+        }
+      }
+}
+      }
+    }
+  }
 }
